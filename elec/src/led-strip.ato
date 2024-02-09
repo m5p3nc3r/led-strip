@@ -1,0 +1,101 @@
+import WS2812B from "addressable-leds/addressable-leds.ato"
+import Resistor from "generics/resistors.ato"
+import Power from "generics/interfaces.ato"
+
+component Connector:
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    footprint = "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
+    mpn = "C5142856"
+
+module LEDStrip:
+    top_connector = new Connector
+    bottom_connector = new Connector    
+    power = new Power
+
+    led1 = new WS2812B
+    led2 = new WS2812B
+    led3 = new WS2812B
+    led4 = new WS2812B
+    led5 = new WS2812B
+    led6 = new WS2812B
+    led7 = new WS2812B
+    led8 = new WS2812B
+    led9 = new WS2812B
+    led10 = new WS2812B
+    led11 = new WS2812B
+    led12 = new WS2812B
+    led13 = new WS2812B
+    led14 = new WS2812B
+    led15 = new WS2812B
+    led16 = new WS2812B
+    led17 = new WS2812B
+    led18 = new WS2812B
+    led19 = new WS2812B
+    led20 = new WS2812B
+
+    # Top connector
+    top_connector.p1 ~ power.vcc
+    top_connector.p2 ~ power.gnd
+    top_connector.p3 ~ led1.din
+
+    # Bottom connector
+    bottom_connector.p1 ~ power.vcc
+    bottom_connector.p2 ~ power.gnd
+    bottom_connector.p3 ~ led20.do
+    bottom_connector.p4 ~ top_connector.p4
+
+    # This resistor loops dout at bottom connector back to din at top connector
+    # Remove this resistor if you daisy chaning multiple LED strips
+    r1 = new Resistor
+    r1.package = "0805"
+    r1.value = 100ohms +/- 10%
+
+    bottom_connector.p3 ~ r1.p1
+    bottom_connector.p4 ~ r1.p2
+    
+
+    led1.power ~ power
+    led2.power ~ power
+    led3.power ~ power
+    led4.power ~ power
+    led5.power ~ power
+    led6.power ~ power
+    led7.power ~ power
+    led8.power ~ power
+    led9.power ~ power
+    led10.power ~ power
+    led11.power ~ power
+    led12.power ~ power
+    led13.power ~ power
+    led14.power ~ power
+    led15.power ~ power
+    led16.power ~ power
+    led17.power ~ power
+    led18.power ~ power
+    led19.power ~ power
+    led20.power ~ power
+    
+    led1.do ~ led2.din
+    led2.do ~ led3.din
+    led3.do ~ led4.din
+    led4.do ~ led5.din
+    led5.do ~ led6.din
+    led6.do ~ led7.din
+    led7.do ~ led8.din
+    led8.do ~ led9.din
+    led9.do ~ led10.din
+    led10.do ~ led11.din
+    led11.do ~ led12.din
+    led12.do ~ led13.din
+    led13.do ~ led14.din
+    led14.do ~ led15.din
+    led15.do ~ led16.din
+    led16.do ~ led17.din
+    led17.do ~ led18.din
+    led18.do ~ led19.din
+    led19.do ~ led20.din
+
+
