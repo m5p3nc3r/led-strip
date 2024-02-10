@@ -1,0 +1,11 @@
+component XL_5050RGBC_WS2812B:
+    # component XL-5050RGBC-WS2812B
+    footprint = "LED-SMD_4P-L5.0-W5.0-BL_XL-5050RGBC"
+    lcsc_id = "C2843785"
+    mpn = "C2843785"
+    # pins
+    signal VDD ~ pin 1
+    signal DOU ~ pin 2
+    signal GND ~ pin 3
+    signal DIN ~ pin 4
+

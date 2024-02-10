@@ -1,4 +1,4 @@
-import WS2812B from "addressable-leds/addressable-leds.ato"
+import WS2812B from "./addressable-leds/addressable-leds.ato"
 import Resistor from "generics/resistors.ato"
 import Power from "generics/interfaces.ato"
 

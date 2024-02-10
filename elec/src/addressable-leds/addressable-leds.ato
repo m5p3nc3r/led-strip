@@ -1,0 +1,103 @@
+import Power from "generics/interfaces.ato"
+import Capacitor from "generics/capacitors.ato"
+
+module AddressableLED:
+    power = new Power
+    signal din
+    signal do
+
+module WS2812B from AddressableLED:
+    led = new _WS2812B_XF02_W
+    cap = new Capacitor
+    cap.designator_prefix = "CLED"
+
+    cap.footprint = "C0402"
+    cap.value = 100nF +/- 20%
+    cap.voltage = 5V to 1MV
+
+    power.vcc ~ cap.p1
+    power.vcc ~ led.VDD
+
+    power.gnd ~ cap.p2
+    power.gnd ~ led.VSS
+
+    din ~ led.DIN
+    do ~ led.DOUT
+
+component _WS2812B_XF02_W:
+    # component WS2812B-XF02/W
+    footprint = "LED-SMD_4P-L5.0-W5.0-TL"
+    lcsc_id = "C4154882"
+    mpn = "C4154882"
+    designator_prefix = "LED"
+    # pins
+    signal VDD ~ pin 1
+    signal DOUT ~ pin 2
+    signal VSS ~ pin 3
+    signal DIN ~ pin 4
+
+component _XL_5050RGBC_WS2812B:
+    footprint = "LED-SMD_4P-L5.0-W5.0-BL_XL-5050RGBC"
+    lcsc_id = "C2843785"
+    # pins
+    signal VDD ~ pin p1
+    signal DOUT ~ pin p2
+    signal VSS ~ pin p3
+    signal DIN ~ pin p4
+
+module LED_ROW:
+    power_bus = new Power
+    signal din
+    signal do
+
+    col1 = new WS2812B
+    col2 = new WS2812B
+    col3 = new WS2812B
+    col4 = new WS2812B
+    col5 = new WS2812B
+    col6 = new WS2812B
+    col7 = new WS2812B
+    col8 = new WS2812B
+
+    col1.power ~ power_bus
+    col2.power ~ power_bus
+    col3.power ~ power_bus
+    col4.power ~ power_bus
+    col5.power ~ power_bus
+    col6.power ~ power_bus
+    col7.power ~ power_bus
+    col8.power ~ power_bus
+
+    din~col1.din; col1.do ~ col2.din; col2.do ~ col3.din; col3.do ~ col4.din; col4.do ~ col5.din; col5.do ~ col6.din; col6.do ~ col7.din; col7.do ~ col8.din; col8.do ~ do
+
+module LED_GRID:
+    power_bus = new Power
+    signal din
+    signal do
+
+    row1 = new LED_ROW
+    row2 = new LED_ROW
+    row3 = new LED_ROW
+    row4 = new LED_ROW
+    row5 = new LED_ROW
+    row6 = new LED_ROW
+    row7 = new LED_ROW
+    row8 = new LED_ROW
+    row9 = new LED_ROW
+    row10 = new LED_ROW
+    row11 = new LED_ROW
+    row12 = new LED_ROW
+
+    row1.power_bus ~ power_bus
+    row2.power_bus ~ power_bus
+    row3.power_bus ~ power_bus
+    row4.power_bus ~ power_bus
+    row5.power_bus ~ power_bus
+    row6.power_bus ~ power_bus
+    row7.power_bus ~ power_bus
+    row8.power_bus ~ power_bus
+    row9.power_bus ~ power_bus
+    row10.power_bus ~ power_bus
+    row11.power_bus ~ power_bus
+    row12.power_bus ~ power_bus
+    din ~ row1.din; row1.do ~ row2.din; row2.do ~ row3.din; row3.do ~ row4.din; row4.do ~ row5.din; row5.do ~ row6.din; row6.do ~ row7.din; row7.do ~ row8.din; row8.do ~ row9.din; row9.do ~ row10.din; row10.do ~ row11.din; row11.do ~ row12.din; row12.do ~ do

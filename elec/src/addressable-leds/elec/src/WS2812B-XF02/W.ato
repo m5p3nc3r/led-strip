@@ -1,0 +1,11 @@
+component WS2812B_XF02_W:
+    # component WS2812B-XF02/W
+    footprint = "LED-SMD_4P-L5.0-W5.0-TL"
+    lcsc_id = "C4154882"
+    mpn = "C4154882"
+    # pins
+    signal VDD ~ pin 1
+    signal DOUT ~ pin 2
+    signal VSS ~ pin 3
+    signal DIN ~ pin 4
+
