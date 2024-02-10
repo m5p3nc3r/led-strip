@@ -25,16 +25,6 @@ module LEDStrip:
     led8 = new WS2812B
     led9 = new WS2812B
     led10 = new WS2812B
-    led11 = new WS2812B
-    led12 = new WS2812B
-    led13 = new WS2812B
-    led14 = new WS2812B
-    led15 = new WS2812B
-    led16 = new WS2812B
-    led17 = new WS2812B
-    led18 = new WS2812B
-    led19 = new WS2812B
-    led20 = new WS2812B
 
     # Top connector
     top_connector.p1 ~ power.vcc
@@ -44,18 +34,9 @@ module LEDStrip:
     # Bottom connector
     bottom_connector.p1 ~ power.vcc
     bottom_connector.p2 ~ power.gnd
-    bottom_connector.p3 ~ led20.do
+    bottom_connector.p3 ~ led10.do
     bottom_connector.p4 ~ top_connector.p4
-
-    # This resistor loops dout at bottom connector back to din at top connector
-    # Remove this resistor if you daisy chaning multiple LED strips
-    r1 = new Resistor
-    r1.package = "0805"
-    r1.value = 100ohms +/- 10%
-
-    bottom_connector.p3 ~ r1.p1
-    bottom_connector.p4 ~ r1.p2
-    
+   
 
     led1.power ~ power
     led2.power ~ power
@@ -67,16 +48,6 @@ module LEDStrip:
     led8.power ~ power
     led9.power ~ power
     led10.power ~ power
-    led11.power ~ power
-    led12.power ~ power
-    led13.power ~ power
-    led14.power ~ power
-    led15.power ~ power
-    led16.power ~ power
-    led17.power ~ power
-    led18.power ~ power
-    led19.power ~ power
-    led20.power ~ power
     
     led1.do ~ led2.din
     led2.do ~ led3.din
@@ -87,15 +58,3 @@ module LEDStrip:
     led7.do ~ led8.din
     led8.do ~ led9.din
     led9.do ~ led10.din
-    led10.do ~ led11.din
-    led11.do ~ led12.din
-    led12.do ~ led13.din
-    led13.do ~ led14.din
-    led14.do ~ led15.din
-    led15.do ~ led16.din
-    led16.do ~ led17.din
-    led17.do ~ led18.din
-    led18.do ~ led19.din
-    led19.do ~ led20.din
-
-
