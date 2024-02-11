@@ -25,18 +25,23 @@ module LEDStrip:
     led8 = new WS2812B
     led9 = new WS2812B
     led10 = new WS2812B
+    led11 = new WS2812B
+    led12 = new WS2812B
 
     # Top connector
     top_connector.p1 ~ power.vcc
     top_connector.p2 ~ power.gnd
     top_connector.p3 ~ led1.din
+    # Do not place the top connector
+    top_connector.mpn = "dnp"
 
     # Bottom connector
     bottom_connector.p1 ~ power.vcc
     bottom_connector.p2 ~ power.gnd
-    bottom_connector.p3 ~ led10.do
+    bottom_connector.p3 ~ led12.do
     bottom_connector.p4 ~ top_connector.p4
-   
+    # Do not place the bottom connector
+    bottom_connector.mpn = "dnp"
 
     led1.power ~ power
     led2.power ~ power
@@ -48,6 +53,8 @@ module LEDStrip:
     led8.power ~ power
     led9.power ~ power
     led10.power ~ power
+    led11.power ~ power
+    led12.power ~ power
     
     led1.do ~ led2.din
     led2.do ~ led3.din
@@ -58,3 +65,5 @@ module LEDStrip:
     led7.do ~ led8.din
     led8.do ~ led9.din
     led9.do ~ led10.din
+    led10.do ~ led11.din
+    led11.do ~ led12.din
